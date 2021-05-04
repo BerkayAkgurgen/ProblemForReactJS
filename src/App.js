@@ -11,7 +11,6 @@ function App() {
 
   useEffect(() => {
     const localTodos = getLocalTodos();
-    console.log(localTodos);
     setTodos(localTodos);
   }, []);
 
@@ -66,6 +65,8 @@ function App() {
         setTodos={setTodos}
         setInputText={setInputText}
         setStatus={setStatus}
+        filteredTodos={filteredTodos}
+        setFilteredTodos={setFilteredTodos}
       />
       <TodoList
         setTodos={setTodos}
