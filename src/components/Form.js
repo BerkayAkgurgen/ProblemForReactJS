@@ -1,6 +1,14 @@
 import React from "react";
 
-const Form = ({ setInputText, inputText, todos, setTodos, setStatus }) => {
+const Form = ({
+  setInputText,
+  inputText,
+  todos,
+  setTodos,
+  setStatus,
+  filteredTodos,
+  setFilteredTodos,
+}) => {
   const removeExtraSpace = (value) => {
     return value.trim().split(/ +/).join(" ");
   };
@@ -29,8 +37,17 @@ const Form = ({ setInputText, inputText, todos, setTodos, setStatus }) => {
   };
 
   const statusHandler = (e) => {
-    setStatus(e.target.value)
-  }
+    setStatus(e.target.value);
+  };
+
+  const filterTodos = (e) => {
+    const filtTod = todos.filter((todo) => {
+      return (
+        todo.text.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1
+      );
+    });
+    setFilteredTodos([...filtTod]);
+  };
 
   return (
     <form>
@@ -40,10 +57,17 @@ const Form = ({ setInputText, inputText, todos, setTodos, setStatus }) => {
         value={inputText}
         onChange={inputTextHandler}
         onKeyPress={inputTextHandler}
+        placeholder="Lütfen Bir Todo Giriniz."
       />
       <button className="todo-button" type="submit" onClick={submitTodoHandler}>
-      <i className="fas fa-location-arrow"></i>
+        <i className="fas fa-location-arrow"></i>
       </button>
+      <input
+        type="text"
+        className="todo-filter-input"
+        placeholder="Lütfen Todo Arayınız."
+        onChange={filterTodos}
+      />
       <div className="select">
         <select onChange={statusHandler} name="todos" className="filter-todo">
           <option value="all">All</option>
