@@ -149,9 +149,11 @@ select {
   cursor: pointer;
   pointer-events: none;
 }
-/* Transition */
-/*
-.select:hover::after {
-  transform: scale(1.5);
+
+.todo-filter-input {
+  margin-left: 3rem;
 }
-*/
+
+input::placeholder {
+  font-size: 20px;
+}
